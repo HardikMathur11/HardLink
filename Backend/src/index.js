@@ -13,7 +13,7 @@ const authrouter = require('./routes/authroutes');
 const usermiddleware = require('./middleware/usermiddleare');
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: process.env.FRONTEND_URL,
   credentials: true
 }));
 app.use(Express.json());
@@ -97,7 +97,10 @@ const Initializeconnection = async () => {
 if (process.env.NODE_ENV !== 'production') {
   Initializeconnection();
 } else {
-  main().then(() => Longschema.syncIndexes());
+  // Setup logic for serverless (Vercel)
+  main().then(() => {
+    Longschema.syncIndexes().catch(err => console.error("Sync error:", err));
+  }).catch(err => console.error("DB Connection error:", err));
 }
 
 module.exports = app;
