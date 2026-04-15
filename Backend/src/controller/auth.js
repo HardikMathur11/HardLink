@@ -26,15 +26,15 @@ const login = async (req, res) => {
     if (!user) {
         return res.status(400).json({ message: "User Not Found" })
     }
-    
+
     const ismatch = await bcrypt.compare(password, user.password)
     if (!ismatch) {
         return res.status(400).json({ message: "Invalid Password" })
     }
-    
+
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" })
     res.cookie("token", token, { httpOnly: true, secure: true })
-    
+
     const userinfo = {
         FirstName: user.FirstName,
         LastName: user.LastName,
