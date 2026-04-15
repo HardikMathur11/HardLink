@@ -13,7 +13,7 @@ const authrouter = require('./routes/authroutes');
 const usermiddleware = require('./middleware/usermiddleare');
 
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: ['http://localhost:5173', process.env.FRONTEND_URL],
   credentials: true
 }));
 app.use(Express.json());
