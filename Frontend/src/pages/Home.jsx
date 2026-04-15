@@ -4,7 +4,7 @@ import api from '../axios'
 import Navbar from './Navbar'
 
 export default function Home() {
-    const { user,error } = useSelector((state) => state.auth)
+    const { user, error } = useSelector((state) => state.auth)
     const [Longurl, setLongurl] = useState('')
     const [customAlias, setCustomAlias] = useState('')
     const [history, sethistory] = useState([]);
@@ -59,26 +59,32 @@ export default function Home() {
     return (
         <div className="min-h-screen bg-[#F8FAFC] p-4 sm:p-6 lg:p-10 relative flex flex-col items-center justify-center font-sans text-gray-900 selection:bg-indigo-100 selection:text-indigo-900">
             
+            {/* Ambient Background Glow */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-200/50 rounded-full blur-[120px]"></div>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-violet-200/50 rounded-full blur-[120px]"></div>
                 <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-sky-200/40 rounded-full blur-[100px]"></div>
             </div>
 
+            {/* Main App Container Window */}
             <div className="w-full max-w-[85rem] bg-white/70 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.1)] border border-white overflow-hidden flex flex-col relative z-10 min-h-[85vh]">
                 
                 <Navbar onSync={fetchdata} />
 
                 <div className="flex flex-col flex-1">
                     <div className="px-6 py-12 md:py-20 flex flex-col items-center justify-center text-center">
+                        
                         <span className="px-5 py-1.5 rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 text-indigo-600 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
-                            Workspace Secure
+                            Link Simplified
                         </span>
+                        
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 tracking-tight mb-10 leading-tight">
                             What will you <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-violet-500">link</span> today?
                         </h1>
 
                         <div className="w-full max-w-4xl relative group flex justify-center">
+                            
+                            {/* Glowing aura under the input bar */}
                             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[2.5rem] blur-lg opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200 pointer-events-none"></div>
                             
                             <div className="relative w-full bg-white shadow-2xl ring-1 ring-gray-900/5 rounded-[2.25rem] p-2.5 flex flex-col sm:flex-row gap-2 transition-all">
@@ -98,16 +104,18 @@ export default function Home() {
                                         />
                                     </div>
 
-                                    <div className="hidden sm:flex items-center">
-                                        <div className="w-px h-10 bg-gray-200"></div>
+                                    {/* The integrated separator you requested earlier */}
+                                    <div className="hidden sm:flex items-center z-10 -mx-4 pointer-events-none">
+                                        <div className="w-10 h-10 rounded-full bg-white shadow-md ring-1 ring-gray-900/10 flex items-center justify-center text-indigo-300 font-black text-xl backdrop-blur-xl">
+                                            /
+                                        </div>
                                     </div>
 
-                                    <div className="sm:w-72 relative flex items-center">
-                                        <div className="absolute left-5 text-gray-300 font-light text-2xl">/</div>
+                                    <div className="sm:w-72 relative flex items-center mt-2 sm:mt-0">
                                         <input
                                             type="text"
                                             placeholder="custom-alias"
-                                            className="block w-full h-[4.5rem] rounded-[1.75rem] border-0 py-2 pl-12 pr-4 text-gray-900 bg-gray-50/50 hover:bg-gray-50 focus:bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600/20 md:text-lg font-medium transition-all"
+                                            className="block w-full h-[4.5rem] rounded-[1.75rem] border-0 py-2 pl-10 pr-4 text-gray-900 bg-gray-50/50 hover:bg-gray-50 focus:bg-white placeholder:text-gray-400 focus:ring-2 focus:ring-indigo-600/20 md:text-lg font-medium transition-all"
                                             value={customAlias}
                                             onChange={(e) => setCustomAlias(e.target.value)}
                                             pattern="[a-zA-Z0-9-]+"
@@ -117,22 +125,28 @@ export default function Home() {
                                     <button
                                         type="submit"
                                         disabled={loading}
-                                        className="h-[4.5rem] mt-2 sm:mt-0 flex items-center justify-center rounded-[1.75rem] bg-gray-900 px-10 text-base font-black text-white shadow-md hover:bg-black focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 disabled:opacity-50 active:scale-[0.98] transition-all whitespace-nowrap"
+                                        className="w-full sm:w-auto h-[4.5rem] mt-2 sm:mt-0 flex items-center justify-center rounded-[1.75rem] bg-gray-900 hover:bg-black px-10 text-base font-black text-white shadow-lg shadow-gray-900/20 focus:ring-4 focus:ring-gray-900/10 active:scale-[0.98] transition-all whitespace-nowrap ml-0 sm:ml-2"
                                     >
-                                        {loading ? 'Creating...' : 'Shorten'}
+                                        <span className="flex flex-row items-center gap-2">
+                                            {loading ? (
+                                                <>
+                                                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                    Working
+                                                </>
+                                            ) : 'Shorten'}
+                                        </span>
                                     </button>
                                 </form>
                             </div>
                         </div>
-                        {errorMsg && (
+
+                        {(errorMsg || error) && (
                             <div className="mt-6 text-sm font-bold text-red-600 bg-red-50/80 backdrop-blur-sm border border-red-100 px-6 py-3 rounded-2xl">
-                                {errorMsg}
-                             </div>
-                        )}
-                        {error && (
-                            <div className="mt-6 text-sm font-bold text-red-600 bg-red-50/80 backdrop-blur-sm border border-red-100 px-6 py-3 rounded-2xl">
-                                {error}
-                             </div>
+                                {errorMsg || error}
+                            </div>
                         )}
                     </div>
 
@@ -164,7 +178,7 @@ export default function Home() {
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                     {history.map((item) => {
-                                        const fullUrl = `http://localhost:4000/${item.Shorturl}`;
+                                        const fullUrl = `${import.meta.env.VITE_API_URL}/${item.Shorturl}`;
                                         const isCopied = copiedId === item._id;
 
                                         return (
@@ -198,17 +212,7 @@ export default function Home() {
                                                     onClick={() => copyToClipboard(fullUrl, item._id)}
                                                     className={`w-full py-4 rounded-[1.25rem] flex items-center justify-center gap-2.5 text-sm font-black transition-all duration-300 ${isCopied ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/20' : 'bg-gray-50 text-gray-600 hover:bg-gray-900 hover:text-white hover:shadow-lg hover:shadow-gray-900/20'}`}
                                                 >
-                                                    {isCopied ? (
-                                                        <>
-                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                                                            Copied!
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" /></svg>
-                                                            Copy URL
-                                                        </>
-                                                    )}
+                                                    {isCopied ? 'Copied URL!' : 'Copy URL'}
                                                 </button>
                                             </div>
                                         )
@@ -217,7 +221,6 @@ export default function Home() {
                             )}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
