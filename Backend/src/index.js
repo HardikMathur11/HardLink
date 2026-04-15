@@ -24,6 +24,7 @@ const allowedOrigins = [
   frontendUrl
 ].filter(Boolean);
 
+
 app.use(cors({
   origin: allowedOrigins,
   credentials: true
