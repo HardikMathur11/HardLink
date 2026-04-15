@@ -72,12 +72,8 @@ To make sure you stay logged in securely across different websites, we use a **B
 ---
 
 ## 👤 Built and Engineered By
+### **Hardik Mathur**
 
-<div align="center">
-
-  <h1>Hardik Mathur</h3>
-
-</div>
 
 ---
 <p align="center">HardLink &middot; A Professional URL Shortening Solution</p>
