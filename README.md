@@ -20,7 +20,7 @@
 ## 🧠 Engineering Behind This
 
 ### 1. The Math of Base62
-To keep links as short as possible, I don't just use numbers. I use **Base62**, which includes numbers (`0-9`), uppercase letters (`A-Z`), and lowercase letters (`a-z`). 
+To keep links as short as possible, we don't just use numbers. We use **Base62**, which includes numbers (`0-9`), uppercase letters (`A-Z`), and lowercase letters (`a-z`). 
 
 **The Calculation:**
 By using 6 characters, the number of possible unique URLs is:
@@ -42,10 +42,12 @@ To make sure you stay logged in securely across different websites, we use a **B
 ---
 
 ## ✨ Key Features
-- **🚀 Simple Shortening**: Instant URL conversion.
-- **📊 Link Dashboard**: Track all your links and click counts in one place.
-- **⚡ Custom Names**: Create your own custom link aliases (e.g., `/my-promo`).
-- **🛡️ Secure Login**: Protected user accounts and private data.
+
+- **🚀 Smart Shortening Engine**: HardLink utilizes a deterministic hashing algorithm to generate unique, predictable short URLs. This prevents database duplication and ensures that the same long URL always maps to the same short link, saving storage and improving performance.
+- **📊 Real-time Dashboard & Analytics**: Gain deep insights into your link performance. Our dashboard, built with **Redux Toolkit**, provides a centralized view of all your shortened URLs, complete with live click tracking and original destination management.
+- **⚡ Custom Branded Aliases**: Go beyond random strings. HardLink allows users to specify custom aliases (e.g., `/portfolio` or `/summer-sale`), making your links more readable, professional, and trustworthy for your audience.
+- **🛡️ Secure Token-Based Auth**: Experience a seamless login experience sessions that never break. By implementing a **Bearer Token** authentication fallback, HardLink remains functional even in browsers with strict third-party cookie restrictions.
+- **📱 Fully Responsive Design**: Built with **Tailwind CSS**, the HardLink interface is optimized for every screen size. Whether you're shortening a link on your mobile phone or managing an entire campaign on your desktop, the experience is fluid and fast.
 
 ---
 
@@ -60,13 +62,20 @@ To make sure you stay logged in securely across different websites, we use a **B
 | **Deployment** | Vercel |
 
 
+
 ---
 
 ## 🛠️ Setup Guide
-
 1. Clone the repo: `git clone https://github.com/HardikMathur11/HardLink.git`
 2. Backend: `cd Backend && npm install` (Add your `.env` variables)
 3. Frontend: `cd ../Frontend && npm install` (Add your API URL)
 4. Start: `npm run dev`
 
-<p align="center">Built by Hardik Mathur</p>
+---
+
+## 👤 Built By
+**Hardik Mathur**
+
+
+---
+<p align="center">HardLink &middot; Professional URL Shortening Solution</p>
