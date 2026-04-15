@@ -201,7 +201,7 @@ export default function Home() {
 
                                                 <div className="mb-8 flex-1">
                                                     <a href={fullUrl} target="_blank" rel="noreferrer" className="text-xl font-bold text-gray-900 hover:text-indigo-600 truncate block transition-colors mb-2 tracking-tight">
-                                                        /{item.Shorturl}
+                                                        {fullUrl}
                                                     </a>
                                                     <p className="text-sm font-medium text-gray-500 line-clamp-2 leading-relaxed">
                                                         {item.Longurl}
