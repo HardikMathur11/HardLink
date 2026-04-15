@@ -71,8 +71,7 @@ export default function Home() {
                 <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
 
                     <div className="text-center mb-12">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-600 text-xs font-semibold tracking-wider uppercase mb-6">
-                            <span className="w-1.5 h-1.5 bg-indigo-500 "></span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-600 text-[10px] font-bold tracking-[0.1em] uppercase mb-6">
                             Link Simplified
                         </div>
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-4 text-gray-900">
@@ -113,7 +112,7 @@ export default function Home() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="h-11 px-7 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-sm transition-all active:scale-[0.97] disabled:opacity-50 whitespace-nowrap shadow-sm flex items-center justify-center gap-2"
+                                className="h-11 px-7 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-sm transition-all disabled:opacity-50 whitespace-nowrap shadow-sm flex items-center justify-center gap-2"
                             >
                                 {loading ? (
                                     <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
