@@ -12,8 +12,26 @@ const ratelimit = require('./middleware/ratelimiter');
 const authrouter = require('./routes/authroutes');
 const usermiddleware = require('./middleware/usermiddleare');
 
+let frontendUrl = process.env.FRONTEND_URL || "";
+if (frontendUrl && !frontendUrl.startsWith('http')) {
+  frontendUrl = `https://${frontendUrl}`;
+}
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://hardlink.vercel.app',
+  'https://hard-link.vercel.app',
+  frontendUrl
+].filter(Boolean);
+
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://hardlink.vercel.app', process.env.FRONTEND_URL],
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('CORS Not Allowed: ' + origin));
+    }
+  },
   credentials: true
 }));
 app.use(Express.json());
@@ -23,8 +41,9 @@ app.use('/auth', authrouter)
 
 
 
-app.post('/short', async (req, res) => {
-  const { Longurl, userID, customAlias } = req.body;
+app.post('/short', usermiddleware, async (req, res) => {
+  const { Longurl, customAlias } = req.body;
+  const userID = req.user._id;
 
   let shorturl;
 

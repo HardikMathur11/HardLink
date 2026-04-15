@@ -126,7 +126,7 @@ export default function Home() {
 
                     {(errorMsg || error) && (
                         <div className="mb-6 flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 border border-red-100 px-4 py-3 rounded-xl">
-                            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z"/></svg>
+                            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z" /></svg>
                             {errorMsg || error}
                         </div>
                     )}
@@ -195,11 +195,10 @@ export default function Home() {
 
                                         <button
                                             onClick={() => copyToClipboard(fullUrl, item._id)}
-                                            className={`w-full py-2 rounded-xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all duration-200 ${
-                                                isCopied
+                                            className={`w-full py-2 rounded-xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all duration-200 ${isCopied
                                                     ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
                                                     : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-900 hover:text-white hover:border-gray-900'
-                                            }`}
+                                                }`}
                                         >
                                             {isCopied ? (
                                                 <>
