@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./hardlink_banner_1776273267384.png" alt="HardLink Banner" width="100%" />
+  
 
   # 🔗 HardLink
   ### Professional URL Shortener with Analytics
@@ -61,7 +61,13 @@ To make sure you stay logged in securely across different websites, we use a **B
 | **Security** | JWT, Bcrypt, Bearer Auth |
 | **Deployment** | Vercel |
 
+---
 
+## 🚀 Future Enhancements
+- [ ] **Custom QR Codes**: Automatically generate a QR code for every shortened link.
+- [ ] **Geo-Location Tracking**: See which countries your clicks are coming from.
+- [ ] **Expiry Links**: Set links to automatically expire after a certain date or number of clicks.
+- [ ] **Custom Domain Support**: Allow users to connect their own domains for shortening.
 
 ---
 
@@ -74,8 +80,13 @@ To make sure you stay logged in securely across different websites, we use a **B
 ---
 
 ## 👤 Built By
-**Hardik Mathur**
 
+<div align="center">
+  <h3>Hardik Mathur</h3>
+  <p><em>Full-Stack Developer</em></p>
+
+  
+</div>
 
 ---
-<p align="center">HardLink &middot; Professional URL Shortening Solution</p>
+<p align="center">HardLink &middot; A Professional URL Shortening Solution</p>
