@@ -63,14 +63,6 @@ To make sure you stay logged in securely across different websites, we use a **B
 
 ---
 
-## 🚀 Future Enhancements
-- [ ] **Custom QR Codes**: Automatically generate a QR code for every shortened link.
-- [ ] **Geo-Location Tracking**: See which countries your clicks are coming from.
-- [ ] **Expiry Links**: Set links to automatically expire after a certain date or number of clicks.
-- [ ] **Custom Domain Support**: Allow users to connect their own domains for shortening.
-
----
-
 ## 🛠️ Setup Guide
 1. Clone the repo: `git clone https://github.com/HardikMathur11/HardLink.git`
 2. Backend: `cd Backend && npm install` (Add your `.env` variables)
@@ -82,9 +74,9 @@ To make sure you stay logged in securely across different websites, we use a **B
 ## 👤 Built and Engineered By
 
 <div align="center">
-  <h3>Hardik Mathur</h3>
 
-  
+  <h1>Hardik Mathur</h3>
+
 </div>
 
 ---
