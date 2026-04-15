@@ -86,17 +86,18 @@ app.get('/:shortCode', async (req, res) => {
 const Initializeconnection = async () => {
   try {
     await main()
-    console.log("Connected to DB successfully");
-
     await Longschema.syncIndexes();
-
     const port = process.env.PORT || 4000;
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    })
+    app.listen(port)
   }
   catch (err) {
   }
 }
 
-Initializeconnection();
+if (process.env.NODE_ENV !== 'production') {
+  Initializeconnection();
+} else {
+  main().then(() => Longschema.syncIndexes());
+}
+
+module.exports = app;
