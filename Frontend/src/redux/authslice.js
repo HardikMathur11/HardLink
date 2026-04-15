@@ -48,7 +48,7 @@ export const logoutUser = createAsyncThunk(
 const initialState = {
     token: "",
     user: null,
-    loading: false,
+    loading: true,
     error: null,
     successMessage: null,
     isauthenticated: false
@@ -91,11 +91,16 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload;
             })
+            .addCase(checkAuth.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(checkAuth.fulfilled, (state, action) => {
+                state.loading = false;
                 state.user = action.payload.userinfo;
                 state.isauthenticated = true;
             })
             .addCase(checkAuth.rejected, (state) => {
+                state.loading = false;
                 state.user = null;
                 state.isauthenticated = false;
             })
