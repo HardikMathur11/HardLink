@@ -1,81 +1,101 @@
-# 🔗 HardLink | Advanced URL Shortening SaaS
+<div align="center">
+  <img src="./hardlink_banner_1776273267384.png" alt="HardLink Banner" width="100%" />
 
-```bash
-$ neofetch --system "HardLink System Architecture"
-```
-```text
-       .---.            USER        : Hardik Mathur
-      /     \           SYSTEM      : MERN Stack + System Design Logic
-      |() ()|           SECURITY    : JWT Bearer Authorization 
-       \  -  /          ALGORITHM   : Base62 Deterministic Encoding
-        `---'           LIMITER     : Custom Sliding Window
-```
+  # 🔗 HardLink
+  ### Advanced URL Shortening with Custom Analytics & System Design Logic
 
-## 🛠️ System Design Overview
-
-HardLink is not just a URL shortener; it's a study in efficient system design, focus on scalability, security, and manual implementation of core infrastructure.
-
-### 1. The Base62 Encoding Engine
-Instead of using generic IDs, HardLink implements a **Base62** algorithm to generate short, clean, and highly unique URL codes.
-- **Character Set**: `0-9`, `A-Z`, `a-z` (62 unique characters).
-- **Process**: 
-  1. We take the `LongURL` and `UserID` and generate a **SHA-256 Hash**.
-  2. The hash is converted into a large integer.
-  3. We perform **Modulo 62** repeatedly to map that integer to our character set.
-- **Result**: A 6-character string providing over **56,800,000,000** unique combinations.
-
-### 2. Custom Sliding Window Rate Limiter
-Implemented from scratch without external libraries (`express-rate-limit`), our middleware ensures system stability and prevents DDoS attacks.
-- **Logic**: It maintains a per-IP state tracking `maxRequest`, `windowMs`, and `lastRequest`.
-- **Sliding Behavior**: It dynamically resets the counter once the window timeframe expires, ensuring fair usage for all users.
-
-### 3. Cross-Domain Bearer Authentication
-To solve the "Third-Party Cookie" blocking issues modern browsers (Chrome/Safari) impose on separate frontend/backend deployments:
-- **Fallback Logic**: Implemented a **Bearer Token** system.
-- **Interceptor**: A custom Axios interceptor automatically injects the JWT into the `Authorization` header, keeping users logged in even across different apex domains (`.vercel.app`).
-
-### 4. Advanced Analytics & Tracking
-Every link shortened via HardLink is monitored in real-time.
-- **Click Tracking**: Every visit increments the click counter in the database via atomic updates.
-- **Dashboard**: Users get a personalized view of all their links, analytics, and original URLs.
+  [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+  [![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue?style=flat-square)](https://www.mongodb.com/mern-stack)
+  [![Vercel Deployment](https://img.shields.io/badge/Deploy-Vercel-black?ロゴ=vercel&logoColor=white)](https://vercel.com)
+  [![Safety Check](https://img.shields.io/badge/State-Production--Ready-red)](https://hardlink.vercel.app)
+</div>
 
 ---
 
-## 🏗️ Tech Stack
+## 📖 Introduction
+**HardLink** is a high-performance URL shortening SaaS built with the MERN stack. It goes beyond simple redirection by incorporating a custom **Base62 encoding engine** and a manual **Sliding Window Rate Limiter**. It is designed for developers who appreciate clean architecture and robust security.
 
-- **Frontend**: React.js 19 + Redux Toolkit (State Management)
-- **Backend**: Node.js + Express.js
-- **Database**: MongoDB Atlas
-- **Security**: JWT + Bcrypt + CORS Proxy
-- **Styling**: Vanilla CSS + Tailwind Core
+## ✨ Key Features
+- **🚀 Ultra-Fast Shortening**: Convert long URLs into 6-character unique codes instantly.
+- **🛡️ JWT Bearer Auth**: Cross-domain session persistence using `localStorage` and `Authorization` headers.
+- **📊 Real-time Analytics**: Track click counts and monitor link performance per user.
+- **⚡ Custom Aliases**: Set professional, branding-focused custom URLs.
+- **🛑 In-House Rate Limiter**: custom-built Sliding Window algorithm to prevent DDoS and spam.
+
+---
+
+## 🛠️ Engineering Behind this
+
+### 1. Deterministic Base62 Algorithm
+HardLink uses an industry-standard **Base62 encoding** (`0-9`, `A-Z`, `a-z`) to maximize code density.
+- **The Concept**: By converting a 32-bit integer derived from a SHA-256 hash into Base62, we achieve **56.8 Billion** unique combinations with only 6 characters.
+- **Why?**: Base62 is 100% URL-safe and avoids special characters like `+` or `/` that can break in browsers.
+
+### 2. Manual Sliding Window Rate Limiter
+Unlike generic libraries, HardLink uses a custom-built middleware to track user requests.
+- Maintains an in-memory state of client IPs.
+- Dynamically calculates time differences to enforce strict request limits.
+- Prevents server overload by returning a `429 Too Many Requests` status during bursts.
+
+---
+
+## 🏗️ Technology Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, Redux Toolkit, Tailwind CSS, Axios |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB Atlas (Mongoose) |
+| **Security** | JWT, HttpOnly Cookies, Bcrypt |
+| **Deployment** | Vercel (Frontend & Backend) |
+
+---
 
 ## 🚀 Getting Started
 
+### Prerequisites
+- Node.js (v18+)
+- MongoDB Atlas Account
+
+### Installation
 ```bash
 # Clone the repository
 git clone https://github.com/HardikMathur11/HardLink.git
 
-# Install Backend Dependencies
-cd Backend && npm install
+# Setup Backend
+cd Backend
+npm install
+# Create .env with MONGODB_URI, JWT_SECRET, FRONTEND_URL
 
-# Install Frontend Dependencies
-cd ../Frontend && npm install
+# Setup Frontend
+cd ../Frontend
+npm install
+# Create .env with VITE_API_URL
+```
 
-# Start the Dev Environment
+### Running Locally
+```bash
+# In Backend folder
+npm start
+
+# In Frontend folder
 npm run dev
 ```
 
-## 📡 API Endpoints
+---
 
-| Method | Endpoint | Description | Auth |
-| :--- | :--- | :--- | :--- |
-| POST | `/auth/register` | User Registration | 🔓 |
-| POST | `/auth/login` | User Login (Returns Bearer Token) | 🔓 |
-| GET | `/auth/me` | Fetch Authenticated User | 🛡️ |
-| POST | `/short` | Create Deterministic Short URL | 🛡️ |
-| GET | `/fetchdata` | Get User Analytics | 🛡️ |
-| GET | `/:shortCode` | Redirection Logic | 🔓 |
+## 📡 API Reference
+
+#### Authentication
+- `POST /auth/register` : Create new account.
+- `POST /auth/login` : Authenticate user & receive Bearer Token.
+- `GET /auth/me` : Get current authenticated user details.
+
+#### Link Management
+- `POST /short` : Shorten a URL (Supports Custom Aliases).
+- `GET /fetchdata` : Fetch analytics for all user links.
+- `GET /:shortCode` : Redirect to original long URL (Atomic click tracking).
 
 ---
 
-> **Note**: This project was built with a focus on **manual implementation** of core features to understand the underlying mechanics of backend infrastructure and security.
+<p align="center">Made with ❤️ by Hardik Mathur</p>
