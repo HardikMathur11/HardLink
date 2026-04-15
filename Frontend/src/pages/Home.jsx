@@ -55,63 +55,55 @@ export default function Home() {
 
     const totalLinks = history.length;
     const totalClicks = history.reduce((sum, item) => sum + (item.clicks || 0), 0);
-    const avgClicks = totalLinks > 0 ? (totalClicks / totalLinks).toFixed(1) : 0;
+    const avgClicks = totalLinks > 0 ? (totalClicks / totalLinks).toFixed(1) : '—';
 
     return (
-        <div className="min-h-screen bg-[#0A0A0F] text-white font-sans selection:bg-indigo-500/30 flex flex-col">
+        <div className="min-h-screen bg-[#F7F7F8] text-gray-900 font-sans selection:bg-indigo-100 flex flex-col">
 
             <div className="fixed inset-0 pointer-events-none z-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-[100px]"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-600/10 rounded-full blur-[100px]"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-950/30 rounded-full blur-[120px]"></div>
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] opacity-70"></div>
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-violet-50 rounded-full blur-[100px] opacity-60"></div>
             </div>
 
             <div className="relative z-10 flex flex-col min-h-screen">
                 <Navbar onSync={fetchdata} />
 
-                <main className="flex-1 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+                <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
 
-                    <div className="text-center mb-14">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-300 text-xs font-semibold tracking-wider uppercase mb-6">
-                            <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-pulse"></span>
+                    <div className="text-center mb-12">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-indigo-200 bg-indigo-50 text-indigo-600 text-xs font-semibold tracking-wider uppercase mb-6">
+                            <span className="w-1.5 h-1.5 bg-indigo-500 "></span>
                             Link Simplified
                         </div>
-
-                        <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.05] mb-5">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight mb-4 text-gray-900">
                             Shorten. Share.{' '}
-                            <span className="relative">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">Track.</span>
-                            </span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-violet-600">Track.</span>
                         </h1>
-                        <p className="text-slate-500 text-lg max-w-lg mx-auto leading-relaxed">
-                            Your personal link management workspace. Create short URLs, set custom aliases, and monitor clicks in real‑time.
+                        <p className="text-gray-500 text-base max-w-md mx-auto">
+                            Create short URLs, set custom aliases, and monitor clicks — all in one place.
                         </p>
                     </div>
 
-                    <div className="relative mb-8">
-                        <div className="absolute -inset-px bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 rounded-[1.5rem] blur-sm opacity-0 group-focus-within:opacity-100 transition-opacity duration-500"></div>
-                        <form
-                            onSubmit={handleshort}
-                            className="group relative flex flex-col sm:flex-row items-stretch gap-2 bg-[#111118] border border-white/10 rounded-[1.4rem] p-2 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] hover:border-white/15 transition-colors"
-                        >
-                            <div className="flex-1 flex items-center gap-3 px-4 rounded-[1.1rem] bg-white/[0.03] border border-white/5">
-                                <svg className="w-5 h-5 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-2 mb-6">
+                        <form onSubmit={handleshort} className="flex flex-col sm:flex-row gap-2">
+                            <div className="flex-1 flex items-center gap-3 px-4 rounded-xl bg-gray-50 border border-gray-100">
+                                <svg className="w-4 h-4 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                                 <input
                                     type="url"
                                     required
-                                    placeholder="https://your-very-long-url.com/goes-here"
-                                    className="flex-1 h-12 bg-transparent border-0 text-white placeholder:text-slate-600 focus:ring-0 text-sm md:text-base font-medium"
+                                    placeholder="https://paste-your-long-url-here.com"
+                                    className="flex-1 h-11 bg-transparent border-0 text-gray-800 placeholder:text-gray-400 focus:ring-0 text-sm font-medium"
                                     value={Longurl}
                                     onChange={(e) => setLongurl(e.target.value)}
                                 />
                             </div>
 
-                            <div className="flex items-center gap-2 px-4 rounded-[1.1rem] bg-white/[0.03] border border-white/5 sm:w-52">
-                                <span className="text-slate-700 font-mono text-base font-bold">/</span>
+                            <div className="flex items-center gap-2 px-4 rounded-xl bg-gray-50 border border-gray-100 sm:w-48">
+                                <span className="text-gray-300 font-mono text-lg font-light">/</span>
                                 <input
                                     type="text"
-                                    placeholder="alias (optional)"
-                                    className="flex-1 h-12 bg-transparent border-0 text-white placeholder:text-slate-600 focus:ring-0 text-sm font-medium"
+                                    placeholder="custom alias"
+                                    className="flex-1 h-11 bg-transparent border-0 text-gray-800 placeholder:text-gray-400 focus:ring-0 text-sm font-medium"
                                     value={customAlias}
                                     onChange={(e) => setCustomAlias(e.target.value)}
                                     pattern="[a-zA-Z0-9-]+"
@@ -121,58 +113,53 @@ export default function Home() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="h-12 sm:h-auto px-7 rounded-[1.1rem] bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all active:scale-[0.97] disabled:opacity-50 whitespace-nowrap shadow-lg shadow-indigo-600/20 flex items-center justify-center gap-2"
+                                className="h-11 px-7 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-sm transition-all active:scale-[0.97] disabled:opacity-50 whitespace-nowrap shadow-sm flex items-center justify-center gap-2"
                             >
                                 {loading ? (
                                     <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
                                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                                     </svg>
-                                ) : (
-                                    <>
-                                        Shorten
-                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                    </>
-                                )}
+                                ) : 'Shorten →'}
                             </button>
                         </form>
-
-                        {(errorMsg || error) && (
-                            <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-2.5 rounded-xl">
-                                <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z"/></svg>
-                                {errorMsg || error}
-                            </div>
-                        )}
                     </div>
 
-                    <div className="grid grid-cols-3 gap-3 mb-12">
+                    {(errorMsg || error) && (
+                        <div className="mb-6 flex items-center gap-2 text-sm font-medium text-red-600 bg-red-50 border border-red-100 px-4 py-3 rounded-xl">
+                            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 9v2m0 4h.01M12 3a9 9 0 100 18A9 9 0 0012 3z"/></svg>
+                            {errorMsg || error}
+                        </div>
+                    )}
+
+                    <div className="grid grid-cols-3 gap-3 mb-10">
                         {[
-                            { label: 'Total Links', value: totalLinks, color: 'text-white' },
-                            { label: 'Total Clicks', value: totalClicks, color: 'text-indigo-400' },
-                            { label: 'Avg. Clicks', value: avgClicks, color: 'text-emerald-400' },
+                            { label: 'Total Links', value: totalLinks, accent: 'text-gray-900' },
+                            { label: 'Total Clicks', value: totalClicks, accent: 'text-indigo-600' },
+                            { label: 'Avg. Clicks', value: avgClicks, accent: 'text-violet-600' },
                         ].map((stat) => (
-                            <div key={stat.label} className="bg-[#111118] border border-white/8 rounded-2xl px-5 py-4 flex flex-col gap-1">
-                                <span className="text-xs text-slate-600 font-semibold uppercase tracking-wider">{stat.label}</span>
-                                <span className={`text-2xl font-black ${stat.color}`}>{stat.value}</span>
+                            <div key={stat.label} className="bg-white border border-gray-200 rounded-xl px-5 py-4 shadow-sm">
+                                <div className="text-xs text-gray-400 font-semibold uppercase tracking-wider mb-1">{stat.label}</div>
+                                <div className={`text-2xl font-black ${stat.accent}`}>{stat.value}</div>
                             </div>
                         ))}
                     </div>
 
                     {history.length > 0 && (
-                        <div className="mb-6 flex items-center gap-3">
-                            <h2 className="text-sm font-bold text-slate-500 uppercase tracking-wider">Active Links</h2>
-                            <div className="flex-1 h-px bg-white/5"></div>
-                            <span className="text-xs text-slate-700 font-semibold">{totalLinks} total</span>
+                        <div className="flex items-center gap-3 mb-5">
+                            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Your Links</span>
+                            <div className="flex-1 h-px bg-gray-200"></div>
+                            <span className="text-xs text-gray-400">{totalLinks} total</span>
                         </div>
                     )}
 
                     {history.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-24 text-center border border-dashed border-white/10 rounded-[1.5rem]">
-                            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 text-slate-700">
-                                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                        <div className="flex flex-col items-center justify-center py-20 text-center border border-dashed border-gray-200 rounded-2xl bg-white">
+                            <div className="w-14 h-14 rounded-2xl bg-gray-50 border border-gray-200 flex items-center justify-center mb-4 text-gray-300">
+                                <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                             </div>
-                            <h3 className="text-lg font-bold text-slate-400 mb-1">No links yet</h3>
-                            <p className="text-slate-700 text-sm">Paste a URL above to create your first short link.</p>
+                            <h3 className="text-base font-bold text-gray-700 mb-1">No links yet</h3>
+                            <p className="text-sm text-gray-400">Paste a URL above to create your first short link.</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 pb-16">
@@ -181,19 +168,16 @@ export default function Home() {
                                 const isCopied = copiedId === item._id;
 
                                 return (
-                                    <div
-                                        key={item._id}
-                                        className="group bg-[#111118] border border-white/8 rounded-[1.4rem] p-5 hover:border-indigo-500/30 hover:bg-[#13131f] transition-all duration-200 flex flex-col"
-                                    >
+                                    <div key={item._id} className="bg-white border border-gray-200 rounded-2xl p-5 hover:border-indigo-200 hover:shadow-md transition-all duration-200 flex flex-col group shadow-sm">
                                         <div className="flex items-start justify-between mb-4">
-                                            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center flex-shrink-0">
-                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                                            <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-500 flex items-center justify-center flex-shrink-0">
+                                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
                                             </div>
                                             <div className="text-right">
-                                                <div className="text-2xl font-black text-white">{item.clicks || 0}</div>
+                                                <div className="text-2xl font-black text-gray-900">{item.clicks || 0}</div>
                                                 <div className="flex items-center justify-end gap-1 mt-0.5">
-                                                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                                                    <span className="text-[10px] text-slate-600 font-semibold uppercase tracking-wider">clicks</span>
+                                                    <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                                                    <span className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider">clicks</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,26 +186,26 @@ export default function Home() {
                                             href={fullUrl}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="text-sm font-bold text-indigo-400 hover:text-indigo-300 truncate block transition-colors mb-1"
+                                            className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 truncate block transition-colors mb-1"
                                         >
                                             {fullUrl}
                                         </a>
-                                        <p className="text-xs text-slate-700 line-clamp-2 leading-relaxed mb-5 flex-1 break-all">
+                                        <p className="text-xs text-gray-400 line-clamp-2 leading-relaxed mb-4 flex-1 break-all">
                                             {item.Longurl}
                                         </p>
 
                                         <button
                                             onClick={() => copyToClipboard(fullUrl, item._id)}
-                                            className={`w-full py-2.5 rounded-xl flex items-center justify-center gap-2 text-xs font-bold transition-all duration-200 ${
+                                            className={`w-full py-2 rounded-xl flex items-center justify-center gap-1.5 text-xs font-bold transition-all duration-200 ${
                                                 isCopied
-                                                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/25'
-                                                    : 'bg-white/[0.04] text-slate-500 border border-white/8 hover:bg-indigo-600 hover:text-white hover:border-indigo-600'
+                                                    ? 'bg-emerald-50 text-emerald-600 border border-emerald-200'
+                                                    : 'bg-gray-50 text-gray-600 border border-gray-200 hover:bg-gray-900 hover:text-white hover:border-gray-900'
                                             }`}
                                         >
                                             {isCopied ? (
                                                 <>
                                                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
-                                                    Copied to clipboard
+                                                    Copied!
                                                 </>
                                             ) : (
                                                 <>

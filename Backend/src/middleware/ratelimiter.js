@@ -1,6 +1,6 @@
 const rateobject = {
     windowMs: 10 * 60 * 1000,
-    maxrequest: 20,
+    maxrequest: 100,
     ip: {}
 }
 const ratelimit = async (req, res, next) => {
