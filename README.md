@@ -79,11 +79,10 @@ To make sure you stay logged in securely across different websites, we use a **B
 
 ---
 
-## 👤 Built By
+## 👤 Built and Engineered By
 
 <div align="center">
   <h3>Hardik Mathur</h3>
-  <p><em>Full-Stack Developer</em></p>
 
   
 </div>
